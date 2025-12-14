@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 final excercisesStub = [
@@ -22,6 +24,14 @@ class ExcercisesScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: add,
+        child: Icon(Icons.add),
+      ),
     );
+  }
+
+  void add() {
+    log('excercise add');
   }
 }
