@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:training_note/exercises_create.dart';
 
 final excercisesStub = [
   "Отжимания",
@@ -8,9 +9,14 @@ final excercisesStub = [
   "Приседания",
 ];
 
-class ExcercisesScreen extends StatelessWidget {
+class ExcercisesScreen extends StatefulWidget {
   const ExcercisesScreen({super.key});
 
+  @override
+  State<ExcercisesScreen> createState() => _ExcercisesScreenState();
+}
+
+class _ExcercisesScreenState extends State<ExcercisesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +31,14 @@ class ExcercisesScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: add,
+        onPressed: () async {
+          log('excercise add');
+          await showDialog(
+              context: context, builder: (context) => ExercisesCreate());
+          setState(() {});
+        },
         child: Icon(Icons.add),
       ),
     );
-  }
-
-  void add() {
-    log('excercise add');
   }
 }
