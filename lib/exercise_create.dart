@@ -22,7 +22,7 @@ class _ExerciseCreateState extends State<ExerciseCreate> {
     return AlertDialog(
       title: TextField(
         controller: _textController,
-        decoration: InputDecoration(hintText: 'Создать упражнение'),
+        decoration: InputDecoration(hintText: 'Создать упражнение111'),
       ),
       actions: [
         MyElevated.cancel(

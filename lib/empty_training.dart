@@ -38,15 +38,6 @@ class _EmptyTrainingState extends State<EmptyTraining> {
           child: Column(
             children: [
               DropDownExercises(
-                repeatsController: repeatsController1,
-                dropdownValue: selected[0],
-                onChanged: (int? value) {
-                  setState(() {
-                    selected[0] = value;
-                  });
-                },
-              ),
-              DropDownExercises(
                 repeatsController: repeatsController2,
                 dropdownValue: selected[1],
                 onChanged: (int? value) {

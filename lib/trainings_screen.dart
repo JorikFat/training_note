@@ -38,7 +38,7 @@ class TrainingsScreen extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                        'Количество подходов: ${trainings[index].approach.length}'),
+                        'Количество подходов111: ${trainings[index].approach.length}'),
                   ],
                 )),
           ),

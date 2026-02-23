@@ -28,7 +28,7 @@ class TrainingDetailsScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 16),
                     ),
                     Text(
-                      '${e.repeats} повторений',
+                      '${e.repeats} повторений111',
                       style: TextStyle(fontSize: 16),
                     ),
                   ],

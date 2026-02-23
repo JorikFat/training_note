@@ -28,7 +28,7 @@ class MyElevated extends StatelessWidget {
     this.onPressed,
   })  : foregroundColor = Colors.white,
         backgroundColor = Colors.red,
-        text = 'Удалить';
+        text = 'Удалить111';
   const MyElevated.close({
     super.key,
     this.onPressed,

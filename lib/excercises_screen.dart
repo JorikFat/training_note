@@ -16,7 +16,7 @@ class ExcercisesScreen extends StatelessWidget {
           valueListenable: exercisesViewModel,
           builder: (context, value, child) {
             return ListView.separated(
-              itemCount: value.length,
+              itemCount: value.length - 1,
               separatorBuilder: (_, __) => const SizedBox(height: 16),
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
