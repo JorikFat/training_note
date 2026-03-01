@@ -1,16 +1,29 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/domain/models/training.dart';
 
 class TrainingDetailsScreen extends StatelessWidget {
-  const TrainingDetailsScreen({super.key, required this.trainings});
+  const TrainingDetailsScreen(
+      {super.key, required this.trainings, required this.delete});
 
   final Training trainings;
+  final void Function() delete;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                delete();
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                CupertinoIcons.delete,
+              ))
+        ],
         title: Text(trainings.date.formatData()),
       ),
       body: Padding(
