@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:training_note/main.dart';
-import 'package:training_note/training_details_screen.dart';
+import 'package:training_note/routing/main.dart';
+import 'package:training_note/ui/training/widgets/training_details_screen.dart';
 
 void main() {
   testWidgets('training details', (tester) async {
@@ -14,5 +14,5 @@ void main() {
       matchesGoldenFile('trainig_details.png'),
     );
     await tester.pumpAndSettle();
-  });  
+  });
 }
