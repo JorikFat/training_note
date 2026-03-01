@@ -7,11 +7,16 @@ import 'package:training_note/ui/training/widgets/empty_training.dart';
 import 'package:training_note/ui/training/widgets/training_details_screen.dart';
 import 'package:training_note/domain/models/training.dart';
 
-class TrainingsScreen extends StatelessWidget {
+class TrainingsScreen extends StatefulWidget {
   const TrainingsScreen({
     super.key,
   });
 
+  @override
+  State<TrainingsScreen> createState() => _TrainingsScreenState();
+}
+
+class _TrainingsScreenState extends State<TrainingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +31,11 @@ class TrainingsScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute<void>(
                           builder: (context) => TrainingDetailsScreen(
+                                delete: () {
+                                  setState(() {
+                                    trainings.removeAt(index);
+                                  });
+                                },
                                 trainings: trainings[index],
                               )));
                 },
