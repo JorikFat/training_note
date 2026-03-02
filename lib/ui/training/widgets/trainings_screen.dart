@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/empty_screen.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
@@ -26,18 +25,13 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
               itemCount: trainings.length,
               separatorBuilder: (_, __) => const SizedBox(height: 16),
               itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  Navigator.push(
+                onTap: () async {
+                  await Navigator.push(
                       context,
                       MaterialPageRoute<void>(
                           builder: (context) => TrainingDetailsScreen(
-                                delete: () {
-                                  setState(() {
-                                    trainings.removeAt(index);
-                                  });
-                                },
-                                trainings: trainings[index],
-                              )));
+                              training: trainings[index], index: index)));
+                  setState(() {});
                 },
                 child: Card(
                   child: Padding(
