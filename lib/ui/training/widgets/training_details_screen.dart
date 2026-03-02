@@ -4,11 +4,12 @@ import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/domain/models/training.dart';
 
 class TrainingDetailsScreen extends StatelessWidget {
-  const TrainingDetailsScreen(
-      {super.key, required this.trainings, required this.delete});
+  const TrainingDetailsScreen({
+    super.key,
+    required this.training,
+  });
 
-  final Training trainings;
-  final void Function() delete;
+  final Training training;
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +18,20 @@ class TrainingDetailsScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                delete();
+                trainings.remove(training);
                 Navigator.pop(context);
               },
               icon: Icon(
                 CupertinoIcons.delete,
               ))
         ],
-        title: Text(trainings.date.formatData()),
+        title: Text(training.date.formatData()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ...trainings.approach.map(
+            ...training.approach.map(
               (e) => Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(
