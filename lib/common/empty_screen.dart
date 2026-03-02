@@ -6,6 +6,8 @@ class EmptyScreen extends StatelessWidget {
 
   const EmptyScreen.training({super.key})
       : text = 'Вы не записали ни одной тренировки';
+  const EmptyScreen.exercise({super.key})
+      : text = 'У Вас не добавлено ни одного упражнения';
 
   @override
   Widget build(BuildContext context) {

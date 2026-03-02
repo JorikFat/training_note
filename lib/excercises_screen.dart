@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:training_note/common/empty_screen.dart';
 import 'package:training_note/exercise_create.dart';
 import 'package:training_note/exercise_edit.dart';
 import 'package:training_note/models/exercise.dart';
@@ -15,33 +16,35 @@ class ExcercisesScreen extends StatelessWidget {
       body: ValueListenableBuilder<List<Exercise>>(
           valueListenable: exercisesViewModel,
           builder: (context, value, child) {
-            return ListView.separated(
-              itemCount: value.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 16),
-              itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (_) => ExerciseEdit(
-                            exercise: value[index],
-                            onDelete: () {
-                              exercisesViewModel
-                                  .deleteExercise(value[index].id);
-                            },
-                            onUpdate: (newName) {
-                              exercisesViewModel.updateExercise(
-                                  value[index].id, newName);
-                            },
-                          ));
-                },
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Text(value[index].name),
-                  ),
-                ),
-              ),
-            );
+            return value.isEmpty
+                ? EmptyScreen.exercise()
+                : ListView.separated(
+                    itemCount: value.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 16),
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (_) => ExerciseEdit(
+                                  exercise: value[index],
+                                  onDelete: () {
+                                    exercisesViewModel
+                                        .deleteExercise(value[index].id);
+                                  },
+                                  onUpdate: (newName) {
+                                    exercisesViewModel.updateExercise(
+                                        value[index].id, newName);
+                                  },
+                                ));
+                      },
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Text(value[index].name),
+                        ),
+                      ),
+                    ),
+                  );
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
