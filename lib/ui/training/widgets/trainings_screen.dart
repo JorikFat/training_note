@@ -34,7 +34,8 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
                             context,
                             MaterialPageRoute<void>(
                                 builder: (context) => TrainingDetailsScreen(
-                                    training: value[index], index: index)));
+                                      training: value[index],
+                                    )));
                         setState(() {});
                       },
                       onLongPress: () async {

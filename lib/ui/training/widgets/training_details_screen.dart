@@ -2,13 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/domain/models/training.dart';
+import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
 
 class TrainingDetailsScreen extends StatefulWidget {
-  const TrainingDetailsScreen(
-      {super.key, required this.training, required this.index});
+  const TrainingDetailsScreen({
+    super.key,
+    required this.training,
+  });
 
   final Training training;
-  final int index;
 
   @override
   State<TrainingDetailsScreen> createState() => _TrainingDetailsScreenState();
@@ -22,7 +24,7 @@ class _TrainingDetailsScreenState extends State<TrainingDetailsScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                trainings.removeAt(widget.index);
+                trainingsScreenViewModel.deleteTraining(widget.training.id);
                 Navigator.pop(context);
               },
               icon: Icon(
