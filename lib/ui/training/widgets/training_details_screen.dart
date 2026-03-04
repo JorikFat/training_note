@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/domain/models/training.dart';
+import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
 
 class TrainingDetailsScreen extends StatelessWidget {
   const TrainingDetailsScreen({
@@ -18,7 +19,7 @@ class TrainingDetailsScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                trainings.remove(training);
+                trainingsScreenViewModel.deleteTraining(training.id);
                 Navigator.pop(context);
               },
               icon: Icon(
