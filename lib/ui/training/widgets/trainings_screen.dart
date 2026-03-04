@@ -71,13 +71,9 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) => CreateTraining(
-                    onCreate: () {
-                      //нужно что-то типо вывода откуда инфу брать, когда сделаем сохранение тренировки
-                      // trainingsScreenViewModel.createTrainigs(date, approach);
-                    },
-                  )));
+          add();
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => CreateTraining()));
         },
         child: Icon(Icons.add),
       ),
