@@ -1,4 +1,4 @@
-import 'package:training_note/models/exercise.dart';
+import 'package:training_note/domain/models/exercise.dart';
 
 class Approach {
   final Exercise excercise;

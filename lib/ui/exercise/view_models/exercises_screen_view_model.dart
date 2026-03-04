@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/models/exercise.dart';
+import 'package:training_note/domain/models/exercise.dart';
 
 class ExercisesViewModel extends ValueNotifier<List<Exercise>> {
   ExercisesViewModel(List<Exercise>? exercises) : super(exercises ?? []);

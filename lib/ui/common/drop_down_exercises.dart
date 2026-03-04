@@ -1,18 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:training_note/models/exercise.dart';
-import 'package:training_note/view_models/exercises_view_model.dart';
+import 'package:training_note/domain/models/exercise.dart';
+import 'package:training_note/ui/exercise/view_models/exercises_screen_view_model.dart';
 
 class DropDownExercises extends StatefulWidget {
   const DropDownExercises(
       {super.key,
       required this.dropdownValue,
       required this.onChanged,
-      required this.repeatsController});
+      required this.repeatsController,
+      required this.listIDs,
+      required this.currentIndex});
   final TextEditingController repeatsController;
   final int? dropdownValue;
   final ValueChanged<int?>? onChanged;
+  final List<int?> listIDs;
+  final int currentIndex;
   @override
   State<DropDownExercises> createState() => _DropDownExercisesState();
 }
@@ -30,6 +34,10 @@ class _DropDownExercisesState extends State<DropDownExercises> {
               children: [Text('Нет упражнений')],
             );
           }
+          final filter = value.where((exercise) {
+            if (exercise.id == widget.dropdownValue) return true;
+            return !widget.listIDs.contains(exercise.id);
+          }).toList();
           widget.dropdownValue != null &&
                   value.any((e) => e.id == widget.dropdownValue)
               ? widget.dropdownValue
@@ -48,7 +56,7 @@ class _DropDownExercisesState extends State<DropDownExercises> {
                   ),
                   icon: Icon(CupertinoIcons.arrow_down),
                   style: const TextStyle(color: Colors.black, fontSize: 18),
-                  items: value
+                  items: filter
                       .map((e) => DropdownMenuItem<int>(
                             value: e.id,
                             child: Text(e.name.toString()),
