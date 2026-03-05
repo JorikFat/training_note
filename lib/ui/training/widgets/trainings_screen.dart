@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:training_note/common/empty_screen.dart';
-import 'package:training_note/date_formating_extension.dart';
-import 'package:training_note/empty_training.dart';
-import 'package:training_note/training_details_screen.dart';
-import 'package:training_note/models/training.dart';
+import 'package:training_note/ui/common/empty_screen.dart';
+import 'package:training_note/ui/common/date_formating_extension.dart';
+import 'package:training_note/ui/training/widgets/empty_training.dart';
+import 'package:training_note/ui/training/widgets/training_details_screen.dart';
+import 'package:training_note/domain/models/training.dart';
 
 class TrainingsScreen extends StatelessWidget {
   const TrainingsScreen({

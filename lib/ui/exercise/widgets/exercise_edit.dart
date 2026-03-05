@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/common/my_elevated.dart';
-import 'package:training_note/models/exercise.dart';
+import 'package:training_note/ui/common/my_elevated.dart';
+import 'package:training_note/domain/models/exercise.dart';
 
 class ExerciseEdit extends StatefulWidget {
   const ExerciseEdit({

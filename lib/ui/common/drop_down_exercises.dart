@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:training_note/models/exercise.dart';
-import 'package:training_note/view_models/exercises_view_model.dart';
+import 'package:training_note/domain/models/exercise.dart';
+import 'package:training_note/ui/exercise/view_models/exercises_screen_view_model.dart';
 
 class DropDownExercises extends StatefulWidget {
   const DropDownExercises(

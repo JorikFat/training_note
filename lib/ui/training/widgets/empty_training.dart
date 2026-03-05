@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:training_note/common/drop_down_exercises.dart';
-import 'package:training_note/date_formating_extension.dart';
+import 'package:training_note/ui/common/drop_down_exercises.dart';
+import 'package:training_note/ui/common/date_formating_extension.dart';
 
 class EmptyTraining extends StatefulWidget {
   const EmptyTraining({super.key});

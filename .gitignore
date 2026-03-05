@@ -47,4 +47,5 @@ app.*.map.json
 # FVM Version Cache
 .fvm/
 .fvmrc
-/test/golden/failures
+/test/golden/failures/
+ios/

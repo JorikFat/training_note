@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/common/my_elevated.dart';
+import 'package:training_note/ui/common/my_elevated.dart';
 
 class ExerciseCreate extends StatefulWidget {
   const ExerciseCreate({super.key});

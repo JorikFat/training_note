@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:training_note/common/empty_screen.dart';
-import 'package:training_note/exercise_create.dart';
-import 'package:training_note/exercise_edit.dart';
-import 'package:training_note/models/exercise.dart';
-import 'package:training_note/view_models/exercises_view_model.dart';
+import 'package:training_note/ui/common/empty_screen.dart';
+import 'package:training_note/domain/models/exercise.dart';
+import 'package:training_note/ui/exercise/view_models/exercises_screen_view_model.dart';
+import 'package:training_note/ui/exercise/widgets/exercise_create.dart';
+import 'package:training_note/ui/exercise/widgets/exercise_edit.dart';
 
 class ExcercisesScreen extends StatelessWidget {
   const ExcercisesScreen({super.key});

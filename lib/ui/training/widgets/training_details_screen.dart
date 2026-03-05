@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/date_formating_extension.dart';
-import 'package:training_note/models/training.dart';
+import 'package:training_note/ui/common/date_formating_extension.dart';
+import 'package:training_note/domain/models/training.dart';
 
 class TrainingDetailsScreen extends StatelessWidget {
   const TrainingDetailsScreen({super.key, required this.trainings});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/main_page.dart';
+import 'package:training_note/routing/main_page.dart';
 
 void main() {
   runApp(const App());

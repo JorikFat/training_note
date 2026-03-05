@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/excercises_screen.dart';
-import 'package:training_note/trainings_screen.dart';
+import 'package:training_note/ui/training/widgets/trainings_screen.dart';
+import 'package:training_note/ui/exercise/widgets/excercises_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
