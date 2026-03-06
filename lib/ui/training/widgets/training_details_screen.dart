@@ -3,18 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/domain/models/training.dart';
 
-class TrainingDetailsScreen extends StatefulWidget {
-  const TrainingDetailsScreen(
-      {super.key, required this.training, required this.index});
+class TrainingDetailsScreen extends StatelessWidget {
+  const TrainingDetailsScreen({
+    super.key,
+    required this.training,
+  });
 
   final Training training;
-  final int index;
 
-  @override
-  State<TrainingDetailsScreen> createState() => _TrainingDetailsScreenState();
-}
-
-class _TrainingDetailsScreenState extends State<TrainingDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,20 +18,20 @@ class _TrainingDetailsScreenState extends State<TrainingDetailsScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                trainings.removeAt(widget.index);
+                trainings.remove(training);
                 Navigator.pop(context);
               },
               icon: Icon(
                 CupertinoIcons.delete,
               ))
         ],
-        title: Text(widget.training.date.formatData()),
+        title: Text(training.date.formatData()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ...widget.training.approach.map(
+            ...training.approach.map(
               (e) => Padding(
                 padding: EdgeInsets.all(16),
                 child: Row(

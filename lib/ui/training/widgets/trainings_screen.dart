@@ -30,7 +30,8 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
                       context,
                       MaterialPageRoute<void>(
                           builder: (context) => TrainingDetailsScreen(
-                              training: trainings[index], index: index)));
+                                training: trainings[index],
+                              )));
                   setState(() {});
                 },
                 child: Card(
