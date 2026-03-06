@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:training_note/domain/models/exercise.dart';
@@ -46,7 +45,7 @@ class _DropDownExercisesState extends State<DropDownExercises> {
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                   ),
-                  icon: Icon(CupertinoIcons.arrow_down),
+                  icon: Icon(Icons.keyboard_arrow_down_outlined),
                   style: const TextStyle(color: Colors.black, fontSize: 18),
                   items: value
                       .map((e) => DropdownMenuItem<int>(
