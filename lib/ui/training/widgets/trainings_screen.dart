@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/empty_screen.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
@@ -64,9 +63,5 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
         child: Icon(Icons.add),
       ),
     );
-  }
-
-  void add() {
-    log('trainings add');
   }
 }
