@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/domain/models/training.dart';
@@ -23,7 +22,7 @@ class TrainingDetailsScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
               icon: Icon(
-                CupertinoIcons.delete,
+                Icons.delete_outline_outlined,
               ))
         ],
         title: Text(training.date.formatData()),
