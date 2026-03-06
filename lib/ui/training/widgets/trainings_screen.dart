@@ -4,7 +4,6 @@ import 'package:training_note/ui/common/empty_screen.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
 import 'package:training_note/ui/training/widgets/create_training.dart';
-import 'package:training_note/ui/training/widgets/delete_training_dialog.dart';
 import 'package:training_note/ui/training/widgets/training_details_screen.dart';
 
 class TrainingsScreen extends StatefulWidget {
@@ -38,18 +37,18 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
                                     )));
                         setState(() {});
                       },
-                      onLongPress: () async {
-                        await showDialog(
-                            context: context,
-                            builder: (context) => DeleteTrainingDialog(
-                                  training: value[index],
-                                  onDelete: () {
-                                    trainingsScreenViewModel
-                                        .deleteTraining(value[index].id);
-                                  },
-                                ));
-                        setState(() {});
-                      },
+                      // onLongPress: () async {
+                      //   await showDialog(
+                      //       context: context,
+                      //       builder: (context) => DeleteTrainingDialog(
+                      //             training: value[index],
+                      //             onDelete: () {
+                      //               trainingsScreenViewModel
+                      //                   .deleteTraining(value[index].id);
+                      //             },
+                      //           ));
+                      //   setState(() {});
+                      // },
                       child: Card(
                         child: Padding(
                             padding: const EdgeInsets.all(16),
