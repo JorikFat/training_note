@@ -3,8 +3,9 @@ import 'package:training_note/ui/common/drop_down_exercises.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 
 class CreateTraining extends StatefulWidget {
-  const CreateTraining({super.key, required this.onCreate});
-  final Function()? onCreate;
+  const CreateTraining({
+    super.key,
+  });
 
   @override
   State<CreateTraining> createState() => _CreateTrainingState();
@@ -31,7 +32,6 @@ class _CreateTrainingState extends State<CreateTraining> {
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {
-              widget.onCreate;
               Navigator.pop(context);
             }),
         appBar: AppBar(
