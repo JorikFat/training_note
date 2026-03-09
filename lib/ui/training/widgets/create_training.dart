@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_note/ui/common/drop_down_exercises.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 
 class CreateTraining extends StatefulWidget {
-  const CreateTraining({super.key});
+  const CreateTraining({
+    super.key,
+  });
 
   @override
   State<CreateTraining> createState() => _CreateTrainingState();
@@ -28,9 +29,14 @@ class _CreateTrainingState extends State<CreateTraining> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         appBar: AppBar(
           iconTheme: IconThemeData(),
-          actions: [Icon(CupertinoIcons.calendar)],
+          actions: [Icon(Icons.calendar_today)],
           title: Text(DateTime.now().formatData()),
         ),
         body: Padding(
