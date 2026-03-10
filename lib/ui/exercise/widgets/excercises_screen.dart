@@ -12,9 +12,11 @@ class ExcercisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ExercisesScreenViewModel exercisesScreenViewModel =
+        ExercisesScreenViewModel(excercisesStub);
     return Scaffold(
       body: ValueListenableBuilder<List<Exercise>>(
-          valueListenable: exercisesViewModel,
+          valueListenable: exercisesScreenViewModel,
           builder: (context, value, child) {
             return value.isEmpty
                 ? EmptyScreen.exercise()
@@ -28,11 +30,11 @@ class ExcercisesScreen extends StatelessWidget {
                             builder: (_) => ExerciseEdit(
                                   exercise: value[index],
                                   onDelete: () {
-                                    exercisesViewModel
+                                    exercisesScreenViewModel
                                         .deleteExercise(value[index].id);
                                   },
                                   onUpdate: (newName) {
-                                    exercisesViewModel.updateExercise(
+                                    exercisesScreenViewModel.updateExercise(
                                         value[index].id, newName);
                                   },
                                 ));
@@ -52,7 +54,7 @@ class ExcercisesScreen extends StatelessWidget {
           final result = await showDialog(
               context: context, builder: (context) => ExerciseCreate());
           if (result == null) return;
-          exercisesViewModel.createExercise(result);
+          exercisesScreenViewModel.createExercise(result);
         },
         child: Icon(Icons.add),
       ),

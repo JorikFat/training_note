@@ -16,6 +16,8 @@ class TrainingDetailsScreen extends StatelessWidget {
 }
 
 class _TrainingDetailsScreenState extends State<TrainingDetailsScreen> {
+  final TrainingsScreenViewModel trainingsScreenViewModel =
+      TrainingsScreenViewModel(trainings);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

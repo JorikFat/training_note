@@ -21,7 +21,6 @@ migration:
     - platform: ios
       create_revision: b45fa18946ecc2d9b4009952c636ba7e2ffbb787
       base_revision: b45fa18946ecc2d9b4009952c636ba7e2ffbb787
-
   # User provided section
 
   # List of Local paths (relative to this file) that should be
@@ -29,5 +28,5 @@ migration:
   #
   # Files that are not part of the templates will be ignored by default.
   unmanaged_files:
-    - "lib/main.dart"
-    - "ios/Runner.xcodeproj/project.pbxproj"
+    - 'lib/main.dart'
+    - 'ios/Runner.xcodeproj/project.pbxproj'

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:training_note/domain/models/exercise.dart';
 
-class ExercisesViewModel extends ValueNotifier<List<Exercise>> {
-  ExercisesViewModel(List<Exercise>? exercises) : super(exercises ?? []);
+class ExercisesScreenViewModel extends ValueNotifier<List<Exercise>> {
+  ExercisesScreenViewModel(List<Exercise>? exercises) : super(exercises ?? []);
 
   void createExercise(String name) {
     //value - сеттер оповещает автоматически всех подписчиков об изменении value (стейта)
@@ -24,6 +24,3 @@ class ExercisesViewModel extends ValueNotifier<List<Exercise>> {
     value = value.where((e) => e.id != id).toList();
   }
 }
-
-final ExercisesViewModel exercisesViewModel =
-    ExercisesViewModel(excercisesStub);
