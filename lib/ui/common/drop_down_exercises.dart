@@ -10,14 +10,12 @@ class DropDownExercises extends StatelessWidget {
     required this.onRepeatsChanged,
     this.selectedExerciseId,
     required this.onExerciseChanged,
-    required this.onRemove,
   });
 
   final int repeats;
   final Function(int) onRepeatsChanged;
   final int? selectedExerciseId;
   final Function(int?) onExerciseChanged;
-  final void Function() onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +72,6 @@ class DropDownExercises extends StatelessWidget {
                     onChanged: (value) {
                       onRepeatsChanged(int.tryParse(value) ?? 0);
                     }),
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.remove,
-                ),
-                onPressed: onRemove,
               ),
             ],
           );
