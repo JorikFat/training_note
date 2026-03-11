@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:training_note/domain/models/training.dart';
+import 'package:training_note/ui/common/dismiss_widget.dart';
 import 'package:training_note/ui/common/empty_screen.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
