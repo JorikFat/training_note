@@ -6,8 +6,10 @@ class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
   TrainingsScreenViewModel(List<Training>? trainings) : super(trainings ?? []);
 
   void createTrainigs(DateTime date, List<Approach> approach) {
-    final newTraining =
-        Training(date: date, approach: approach, id: DateTime.now().second);
+    final newTraining = Training(
+        date: date,
+        approach: approach,
+        id: DateTime.now().microsecondsSinceEpoch);
     value = [...value, newTraining];
   }
 

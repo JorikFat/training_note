@@ -29,35 +29,38 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
                 : ListView.separated(
                     itemCount: value.length,
                     separatorBuilder: (_, __) => const SizedBox(height: 16),
-                    itemBuilder: (context, index) => InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                                builder: (context) => TrainingDetailsScreen(
-                                      training: value[index],
-                                      trainingsScreenViewModel:
-                                          trainingsScreenViewModel,
-                                    )));
-                        setState(() {});
-                      },
-                      child: Card(
-                        child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    'Дата тренировки: ${value[index].date.formatData()}'),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Text(
-                                    'Количество подходов: ${value[index].approach.length}'),
-                              ],
-                            )),
-                      ),
-                    ),
+                    itemBuilder: (context, index) {
+                      return Card(
+                        margin: EdgeInsets.zero,
+                        child: InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                    builder: (context) => TrainingDetailsScreen(
+                                          training: value[index],
+                                          trainingsScreenViewModel:
+                                              trainingsScreenViewModel,
+                                        )));
+                            setState(() {});
+                          },
+                          child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      'Дата тренировки: ${value[index].date.formatData()}'),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                      'Количество подходов: ${value[index].approach.length}'),
+                                ],
+                              )),
+                        ),
+                      );
+                    },
                   );
           }),
       floatingActionButton: FloatingActionButton(
