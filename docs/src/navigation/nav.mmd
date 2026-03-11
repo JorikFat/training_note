@@ -1,0 +1,28 @@
+---
+title: Navigation 
+---
+
+flowchart TD
+    A["main"]
+        subgraph Exercise Flow
+        C["ExercisePage"]
+        E["CreateExerciseDialog"]
+        F["EditExerciseDialog"]
+    end
+        subgraph Training Flow
+        B["TrainingPage"]
+        D["CreateTrainingScreen"]
+        G["DatePickerDialog"]
+    end
+    A --> B
+    B --> D
+    D -->|Возврат после сохранения| B
+    D --> G  
+    G -->|Возврат после выбора даты| D
+
+    A --> C   
+    C --> E
+    E -->|Возврат после создания/сохранения| C
+    C --> F    
+    F -->|Возврат после удаления/обновления| C
+

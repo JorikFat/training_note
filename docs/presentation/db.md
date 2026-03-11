@@ -1,0 +1,1 @@
+![Схема навигации тренировочного модуля](./docs/navigation/navigation.svg)

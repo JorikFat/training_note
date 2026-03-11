@@ -1,0 +1,26 @@
+---
+title: MODELS FOR BD
+---
+
+erDiagram
+    TRAINING ||--|{ APPROACH : "1 training has many approaches"
+    EXERCISE ||--|{ APPROACH : "1 exercise has many approaches"
+
+    TRAINING {
+        int id PK
+        TEXT date 
+    }
+
+    EXERCISE {
+        int id PK
+        TEXT name 
+    }
+
+    APPROACH {
+        int id PK 
+        int training_id FK 
+        int exercise_id FK 
+        int repeats 
+    }
+   
+    
