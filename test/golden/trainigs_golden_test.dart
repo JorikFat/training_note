@@ -4,7 +4,7 @@ import 'package:training_note/routing/main_page.dart';
 
 void main() {
   testWidgets('list', (tester) async {
-    await tester.pumpWidget(const App());
+    await tester.pumpWidget(App());
 
     await expectLater(
       find.byType(MainPage),

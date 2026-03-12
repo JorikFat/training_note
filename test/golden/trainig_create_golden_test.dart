@@ -5,7 +5,7 @@ import 'package:training_note/ui/training/widgets/create_training.dart';
 
 void main() {
   testWidgets('training details', (tester) async {
-    await tester.pumpWidget(const App());
+    await tester.pumpWidget(App());
 
     await tester.tap(find.byIcon(Icons.add));
     await tester.pumpAndSettle();

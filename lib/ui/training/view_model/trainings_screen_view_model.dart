@@ -29,3 +29,5 @@ class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
     value = value.where((e) => e.id != id).toList();
   }
 }
+
+late final TrainingsScreenViewModel trainingsScreenViewModel;

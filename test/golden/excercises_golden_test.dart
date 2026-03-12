@@ -5,7 +5,7 @@ import 'package:training_note/routing/main_page.dart';
 
 void main() {
   testWidgets('list', (tester) async {
-    await tester.pumpWidget(const App());
+    await tester.pumpWidget(App());
 
     await tester.tap(find.text("Упражнения"));
     await tester.pumpAndSettle();
@@ -18,7 +18,7 @@ void main() {
   });
 
   testWidgets('add', (tester) async {
-    await tester.pumpWidget(const App());
+    await tester.pumpWidget(App());
 
     await tester.tap(find.text('Упражнения'));
     await tester.pumpAndSettle();
@@ -34,7 +34,7 @@ void main() {
   });
 
   testWidgets('edit', (tester) async {
-    await tester.pumpWidget(const App());
+    await tester.pumpWidget(App());
 
     await tester.tap(find.text('Упражнения'));
     await tester.pumpAndSettle();

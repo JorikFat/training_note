@@ -8,12 +8,12 @@ import 'package:training_note/ui/exercise/widgets/exercise_create.dart';
 import 'package:training_note/ui/exercise/widgets/exercise_edit.dart';
 
 class ExcercisesScreen extends StatelessWidget {
-  const ExcercisesScreen({super.key});
+  const ExcercisesScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final ExercisesScreenViewModel exercisesScreenViewModel =
-        ExercisesScreenViewModel(excercisesStub);
     return Scaffold(
       body: ValueListenableBuilder<List<Exercise>>(
           valueListenable: exercisesScreenViewModel,

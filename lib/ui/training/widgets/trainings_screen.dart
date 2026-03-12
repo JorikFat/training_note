@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/domain/models/training.dart';
-import 'package:training_note/ui/common/empty_screen.dart';
 import 'package:training_note/ui/common/date_formating_extension.dart';
+import 'package:training_note/ui/common/empty_screen.dart';
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
 import 'package:training_note/ui/training/widgets/create_training.dart';
 import 'package:training_note/ui/training/widgets/training_details_screen.dart';
@@ -16,8 +15,6 @@ class TrainingsScreen extends StatefulWidget {
 }
 
 class _TrainingsScreenState extends State<TrainingsScreen> {
-  final TrainingsScreenViewModel trainingsScreenViewModel =
-      TrainingsScreenViewModel(trainings);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +36,6 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
                                 MaterialPageRoute<void>(
                                     builder: (context) => TrainingDetailsScreen(
                                           training: value[index],
-                                          trainingsScreenViewModel:
-                                              trainingsScreenViewModel,
                                         )));
                             setState(() {});
                           },
@@ -65,10 +60,8 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) => CreateTraining(
-                    trainingSreeenViewModel: trainingsScreenViewModel,
-                  )));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => CreateTraining()));
         },
         child: Icon(Icons.add),
       ),

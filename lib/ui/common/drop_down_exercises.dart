@@ -19,8 +19,6 @@ class DropDownExercises extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ExercisesScreenViewModel exercisesScreenViewModel =
-        ExercisesScreenViewModel(excercisesStub);
     return ValueListenableBuilder<List<Exercise>>(
         valueListenable: exercisesScreenViewModel,
         builder: (context, value, a) {

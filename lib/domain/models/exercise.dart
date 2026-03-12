@@ -14,8 +14,4 @@ class Exercise {
   }
 }
 
-final List<Exercise> excercisesStub = [
-  Exercise(name: "Отжимания", id: 1),
-  Exercise(name: "Подтягивания", id: 2),
-  Exercise(name: "Приседания", id: 3),
-];
+final List<Exercise> excercisesStub = [];

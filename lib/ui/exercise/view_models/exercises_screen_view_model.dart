@@ -24,3 +24,5 @@ class ExercisesScreenViewModel extends ValueNotifier<List<Exercise>> {
     value = value.where((e) => e.id != id).toList();
   }
 }
+
+late final ExercisesScreenViewModel exercisesScreenViewModel;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/domain/models/exercise.dart';
 import 'package:training_note/domain/models/training.dart';
 import 'package:training_note/ui/common/dismiss_widget.dart';
 import 'package:training_note/ui/common/drop_down_exercises.dart';
@@ -9,19 +8,10 @@ import 'package:training_note/ui/training/view_model/create_training_view_model.
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
 // list training
 
-class CreateTraining extends StatefulWidget {
-  const CreateTraining({super.key, required this.trainingSreeenViewModel});
-
-  final TrainingsScreenViewModel trainingSreeenViewModel;
-
-  @override
-  State<CreateTraining> createState() => _CreateTrainingState();
-}
-
-class _CreateTrainingState extends State<CreateTraining> {
-  final createTrainingVM = CreateTrainingViewModel();
-
-  final exercisesScreenViewModel = ExercisesScreenViewModel(excercisesStub);
+class CreateTraining extends StatelessWidget {
+  const CreateTraining({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +32,7 @@ class _CreateTrainingState extends State<CreateTraining> {
             IconButton(
               onPressed: () {
                 createTrainingVM.save();
-                widget.trainingSreeenViewModel.value = trainings.toList();
+                trainingsScreenViewModel.value = trainings.toList();
                 Navigator.pop(context);
               },
               icon: Icon(Icons.file_download),

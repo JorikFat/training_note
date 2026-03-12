@@ -58,3 +58,5 @@ class CreateTrainingViewModel extends ChangeNotifier {
     }
   }
 }
+
+late final CreateTrainingViewModel createTrainingVM;

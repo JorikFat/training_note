@@ -6,5 +6,3 @@ class TrainingEntry {
 
   TrainingEntry({this.excercise, this.repeats});
 }
-
-final List<TrainingEntry> trainingEntry = [];
