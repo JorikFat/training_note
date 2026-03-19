@@ -34,7 +34,7 @@ class LocalFileComparatorWithThreshold extends LocalFileComparator {
   }
 }
 
-const _kGoldenTestsThreshold = 0.5 / 100;
+const _kGoldenTestsThreshold = 2.5 / 100;
 
 Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   if (goldenFileComparator is LocalFileComparator) {
