@@ -10,8 +10,8 @@ void main() {
   trainingsScreenViewModel = TrainingsScreenViewModel([]);
   exercisesScreenViewModel = ExercisesScreenViewModel([])..value = [
       Exercise(name: 'Отжимания', id: 1),
-      Exercise(name: 'Приседания', id: 2),
       Exercise(name: 'Подтягивания', id: 3),
+      Exercise(name: 'Приседания', id: 2),
   ];
 
   testWidgets('list', (tester) async {
