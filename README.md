@@ -7,7 +7,7 @@ Dart: 3.10.0
 ### Стек разработки
 StateManagment: Notifier;  
 Навигация: Navigation 2.0;  
-База данный: Sqflite;  
+База данныx: drift(sqlite);  
 
 ## Open Sourse проект по добровольной разработке
 
@@ -18,6 +18,11 @@ StateManagment: Notifier;
 - Написать в задаче комментарий, что Вы ее берете делать;
 - Выполнить задачу;
 - Прислать pull-request;
+
+## Для запуска 
+```dart
+dart run build_runner build                         
+```
 
 ## Навигация
 <img width="743" height="473" alt="image" src="https://github.com/user-attachments/assets/47e07f34-5b5b-4e93-beae-1bf214628496" />

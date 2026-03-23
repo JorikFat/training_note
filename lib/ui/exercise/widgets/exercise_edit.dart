@@ -11,8 +11,8 @@ class ExerciseEdit extends StatefulWidget {
   });
 
   final Exercise exercise;
-  final void Function() onDelete;
-  final void Function(String newName) onUpdate;
+  final Future<void> Function() onDelete;
+  final Future<void> Function(String newName) onUpdate;
 
   @override
   State<ExerciseEdit> createState() => _ExerciseEditState();

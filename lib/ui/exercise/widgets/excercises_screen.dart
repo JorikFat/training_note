@@ -29,12 +29,12 @@ class ExcercisesScreen extends StatelessWidget {
                             context: context,
                             builder: (_) => ExerciseEdit(
                                   exercise: value[index],
-                                  onDelete: () {
-                                    exercisesScreenViewModel
-                                        .deleteExercise(value[index].id);
+                                  onDelete: () async {
+                                    await exercisesScreenViewModel
+                                        .delete(value[index].id);
                                   },
-                                  onUpdate: (newName) {
-                                    exercisesScreenViewModel.updateExercise(
+                                  onUpdate: (newName) async {
+                                    await exercisesScreenViewModel.update(
                                         value[index].id, newName);
                                   },
                                 ));
@@ -54,7 +54,7 @@ class ExcercisesScreen extends StatelessWidget {
           final result = await showDialog(
               context: context, builder: (context) => ExerciseCreate());
           if (result == null) return;
-          exercisesScreenViewModel.createExercise(result);
+          await exercisesScreenViewModel.create(result);
         },
         child: Icon(Icons.add),
       ),

@@ -1,27 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/routing/main_page.dart';
+import 'package:training_note/data/database.dart';
+import 'package:training_note/training_note_app.dart';
 import 'package:training_note/ui/exercise/view_models/exercises_screen_view_model.dart';
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final database = AppDatabase();
+  exercisesScreenViewModel = ExercisesScreenViewModel([], database: database);
+  await exercisesScreenViewModel.load();
   trainingsScreenViewModel = TrainingsScreenViewModel([]);
-  exercisesScreenViewModel = ExercisesScreenViewModel([]);
-
-  runApp(App());
-}
-
-class App extends StatelessWidget {
-  const App({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: MainPage());
-  }
+  runApp(TrainingNoteApp());
 }
