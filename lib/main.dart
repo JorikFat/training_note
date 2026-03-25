@@ -9,6 +9,9 @@ void main() async {
   final database = AppDatabase();
   exercisesScreenViewModel = ExercisesScreenViewModel([], database: database);
   await exercisesScreenViewModel.load();
-  trainingsScreenViewModel = TrainingsScreenViewModel([]);
-  runApp(TrainingNoteApp());
+  trainingsScreenViewModel = TrainingsScreenViewModel([], database: database);
+  await trainingsScreenViewModel.load();
+  runApp(TrainingNoteApp(
+    database: database,
+  ));
 }

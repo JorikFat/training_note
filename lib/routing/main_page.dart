@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:training_note/data/database.dart';
 import 'package:training_note/ui/training/widgets/trainings_screen.dart';
 import 'package:training_note/ui/exercise/widgets/excercises_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({
     super.key,
+    required this.database,
   });
-
+  final AppDatabase database;
   @override
   State<MainPage> createState() => _MainPageState();
 }
@@ -18,7 +20,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        TrainingsScreen(),
+        TrainingsScreen(
+          database: widget.database,
+        ),
         ExcercisesScreen(),
       ][_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
