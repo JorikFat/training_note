@@ -1,0 +1,56 @@
+---
+title: ARCHITECTURE TRAINING NOTE 
+---
+flowchart RL
+    A["main"]
+subgraph UI layer
+    subgraph View
+        subgraph Training View
+            B["TrainingPage"]
+            D["CreateTrainingScreen"]
+            G["DatePickerDialog"]
+        end
+        subgraph Exercise View
+            Q["ExerciseScreen"]
+            W["ExerciseCreate"]
+            R["ExerciseEdit"]
+        end
+    end
+    subgraph VM
+        subgraph Training  VM
+            M["TrainingScreenViewModel"]
+            N["CreateTrainingViewModel"]
+            L["DatePickerDialogViewModel"]
+        end
+        subgraph Exercise  VM
+            C["ExercisesScreenViewModel"]
+        end
+    end
+end
+subgraph Data layer
+    subgraph Repository layer
+    K["TrainingRepository"]
+    P["ExerciseRepository"]
+    end
+    subgraph Service layer
+    SR["SQLService"]
+    end
+end
+    A --> SR
+    SR --> K
+    SR --> P
+    K --> M
+    K --> N
+    K --> L
+    P --> C
+    M --> B
+    N --> D
+    L --> G
+    C --> Q
+    C --> W
+    C --> R
+    
+
+
+   
+
