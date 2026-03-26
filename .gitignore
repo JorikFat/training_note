@@ -48,3 +48,4 @@ app.*.map.json
 .fvm/
 .fvmrc
 /test/golden/failures/
+**.g.dart
