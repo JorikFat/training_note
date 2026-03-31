@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 
+import 'package:drift/drift.dart';
 import 'package:training_note/data/database.dart';
 import 'package:training_note/trainings/training.dart';
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
@@ -14,9 +14,7 @@ class TrainingsInteractor {
   final StreamController<List<Training>> streamController =
       StreamController.broadcast();
 
-  TrainingsInteractor({required this.database}){
-    stream.listen((trainings) => log(trainings.toString()));
-  }
+  TrainingsInteractor({required this.database});
 
   Stream<List<Training>> get stream => streamController.stream;
 
@@ -28,5 +26,15 @@ class TrainingsInteractor {
 
   void close() {
     streamController.close();
+  }
+
+  @Deprecated('remove after interrop')
+  //FIXME: pass training date
+  Future<TrainingDataData> add() async {
+    final result = await database
+        .into(database.trainingData)
+        .insertReturning(TrainingDataCompanion(date: Value(DateTime.now())));
+    await init();
+    return result;
   }
 }

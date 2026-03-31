@@ -11,6 +11,7 @@ class Training {
     required this.approachCount,
   });
 
+  @Deprecated('remove after interrop')
   Training.interrop(old.Training training)
       : id = training.id,
         date = training.date,
