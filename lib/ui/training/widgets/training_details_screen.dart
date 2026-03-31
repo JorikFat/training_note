@@ -6,13 +6,14 @@ import 'package:training_note/ui/training/view_model/trainings_screen_view_model
 class TrainingDetailsScreen extends StatelessWidget {
   const TrainingDetailsScreen({
     super.key,
-    required this.training,
+    required this.id,
   });
 
-  final Training training;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
+    final Training training = trainingsScreenViewModel.value.firstWhere((it) => it.id == id);
     return Scaffold(
       appBar: AppBar(
         actions: [

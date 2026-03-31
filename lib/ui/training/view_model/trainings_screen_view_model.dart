@@ -11,6 +11,10 @@ class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
 
 //загрузка
   Future<void> load() async {
+    value = await read(database);
+  }
+
+  static Future<List<Training>> read(AppDatabase database) async {
     final exercises = await database.select(database.exerciseData).get();
     final trainings = await database.select(database.trainingData).get();
     final approaches = await database.select(database.approachData).get();
@@ -32,7 +36,7 @@ class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
       }
     }
 
-    value = trainings.map((e) {
+    return trainings.map((e) {
       final approach = approachesByID[e.id] ?? [];
       return Training(id: e.id, date: e.date, approach: approach);
     }).toList();
