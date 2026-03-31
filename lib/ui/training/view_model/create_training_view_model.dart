@@ -64,6 +64,7 @@ class CreateTrainingViewModel extends ChangeNotifier {
         date: trainingCompanion.date,
         approach: approaches,
         id: trainingCompanion.id);
+    await trainings.init();
     return training;
   }
 

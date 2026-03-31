@@ -28,13 +28,17 @@ class TrainingsInteractor {
     streamController.close();
   }
 
-  @Deprecated('remove after interrop')
   //FIXME: pass training date
   Future<TrainingDataData> add() async {
     final result = await database
         .into(database.trainingData)
         .insertReturning(TrainingDataCompanion(date: Value(DateTime.now())));
-    await init();
     return result;
+  }
+
+  Future<void> delete(int id) async {
+    await (database.delete(database.trainingData)
+          ..where((t) => t.id.equals(id)))
+        .go();
   }
 }

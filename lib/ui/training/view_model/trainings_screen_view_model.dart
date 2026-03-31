@@ -4,6 +4,7 @@ import 'package:training_note/data/database.dart';
 import 'package:training_note/domain/models/approach.dart';
 import 'package:training_note/domain/models/exercise.dart';
 import 'package:training_note/domain/models/training.dart';
+import 'package:training_note/trainings/trainings_interactor.dart';
 
 class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
   TrainingsScreenViewModel(super._value, {required this.database});
@@ -85,11 +86,10 @@ class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
       ..where((t) => t.trainingId.equals(id));
     await deleteApproach.go();
     //удалить тренировку по id
-    final trackedId = database.delete(database.trainingData)
-      ..where((t) => t.id.equals(id));
-    await trackedId.go();
+    await trainings.delete(id);
     //обновить ui
     value = value.where((e) => e.id != id).toList();
+    await trainings.init();
   }
 }
 
