@@ -41,9 +41,7 @@ class _TrainingsScreenState extends State<TrainingsScreen> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => CreateTraining(
-                database: widget.database,
-              ),
+              builder: (_) => CreateTraining(),
             ),
           );
         },

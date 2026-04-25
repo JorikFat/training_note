@@ -3,32 +3,36 @@ import 'dart:async';
 import 'package:drift/drift.dart';
 import 'package:training_note/data/database.dart';
 import 'package:training_note/trainings/training.dart';
-import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
+import 'package:training_note/trainings/trainings_accessor.dart';
 
 late final TrainingsInteractor trainings;
 
 class TrainingsInteractor {
-  final AppDatabase database;
+  final TrainingsAccessor database;
   List<Training>? trainings;
+  late final StreamSubscription _sub;
 
   final StreamController<List<Training>> streamController =
       StreamController.broadcast();
 
-  TrainingsInteractor({required this.database});
+  TrainingsInteractor({required AppDatabase database})
+      : database = TrainingsAccessor(database) {
+    _sub = this.database.watch().listen(_onUpdate);
+  }
 
   Stream<List<Training>> get stream => streamController.stream;
 
   Future<void> init() async {
-    final oldTrainings = await TrainingsScreenViewModel.read(database);
-    trainings = oldTrainings.map(Training.interrop).toList();
+    trainings = await database.read();
     streamController.add(trainings!);
   }
 
   void close() {
     streamController.close();
+    _sub.cancel();
   }
 
-  //FIXME: pass training date
+  //TODO: pass training date
   Future<TrainingDataData> add() async {
     final result = await database
         .into(database.trainingData)
@@ -40,5 +44,10 @@ class TrainingsInteractor {
     await (database.delete(database.trainingData)
           ..where((t) => t.id.equals(id)))
         .go();
+  }
+
+  void _onUpdate(List<Training> data) {
+    trainings = data;
+    streamController.add(trainings!);
   }
 }

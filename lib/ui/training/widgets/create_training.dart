@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:training_note/data/database.dart';
+import 'package:training_note/main.dart';
+import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/ui/common/dismiss_widget.dart';
 import 'package:training_note/ui/common/drop_down_exercises.dart';
-import 'package:training_note/ui/common/date_formating_extension.dart';
 import 'package:training_note/ui/exercise/view_models/exercises_screen_view_model.dart';
 import 'package:training_note/ui/training/view_model/create_training_view_model.dart';
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
-// list training
 
 class CreateTraining extends StatelessWidget {
-  const CreateTraining({
-    super.key,
-    required this.database,
-  });
-  final AppDatabase database;
+  const CreateTraining({super.key});
+  // final AppDatabase database;
 
   @override
   Widget build(BuildContext context) {
