@@ -6,6 +6,7 @@ import 'package:training_note/domain/models/exercise.dart';
 import 'package:training_note/domain/models/training.dart';
 import 'package:training_note/trainings/trainings_interactor.dart';
 
+@deprecated
 class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
   TrainingsScreenViewModel(super._value, {required this.database});
   final AppDatabase database;
