@@ -1,9 +1,9 @@
-import 'package:drift/drift.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:training_note/data/database.dart';
 import 'package:training_note/domain/models/approach.dart';
 import 'package:training_note/domain/models/exercise.dart';
 import 'package:training_note/domain/models/training.dart';
+import 'package:training_note/trainings/trainings_interactor.dart';
 import 'package:training_note/ui/training/models/training_entry.dart';
 import 'package:training_note/ui/training/view_model/trainings_screen_view_model.dart';
 
@@ -44,9 +44,7 @@ class CreateTrainingViewModel extends ChangeNotifier {
       return null;
     }
     //создать тренировку в бд
-    final trainingCompanion = await database
-        .into(database.trainingData)
-        .insertReturning(TrainingDataCompanion(date: Value(DateTime.now())));
+    final trainingCompanion = await trainings.add();
 //создать подходы в бд
     for (var approach in valid) {
       await database.into(database.approachData).insert(
@@ -66,6 +64,7 @@ class CreateTrainingViewModel extends ChangeNotifier {
         date: trainingCompanion.date,
         approach: approaches,
         id: trainingCompanion.id);
+    await trainings.init();
     return training;
   }
 

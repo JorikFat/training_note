@@ -4,13 +4,19 @@ import 'package:training_note/data/database.dart';
 import 'package:training_note/domain/models/approach.dart';
 import 'package:training_note/domain/models/exercise.dart';
 import 'package:training_note/domain/models/training.dart';
+import 'package:training_note/trainings/trainings_interactor.dart';
 
+@deprecated
 class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
   TrainingsScreenViewModel(super._value, {required this.database});
   final AppDatabase database;
 
 //загрузка
   Future<void> load() async {
+    value = await read(database);
+  }
+
+  static Future<List<Training>> read(AppDatabase database) async {
     final exercises = await database.select(database.exerciseData).get();
     final trainings = await database.select(database.trainingData).get();
     final approaches = await database.select(database.approachData).get();
@@ -32,7 +38,7 @@ class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
       }
     }
 
-    value = trainings.map((e) {
+    return trainings.map((e) {
       final approach = approachesByID[e.id] ?? [];
       return Training(id: e.id, date: e.date, approach: approach);
     }).toList();
@@ -81,11 +87,10 @@ class TrainingsScreenViewModel extends ValueNotifier<List<Training>> {
       ..where((t) => t.trainingId.equals(id));
     await deleteApproach.go();
     //удалить тренировку по id
-    final trackedId = database.delete(database.trainingData)
-      ..where((t) => t.id.equals(id));
-    await trackedId.go();
+    await trainings.delete(id);
     //обновить ui
     value = value.where((e) => e.id != id).toList();
+    await trainings.init();
   }
 }
 
