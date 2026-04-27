@@ -17,3 +17,7 @@ class Training {
         date = training.date,
         approachCount = training.approach.length;
 }
+
+class TrainigDraft extends Training {
+  TrainigDraft({required super.date}) : super(id: 0, approachCount: 0);
+}
