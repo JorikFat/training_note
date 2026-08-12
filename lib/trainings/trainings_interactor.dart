@@ -20,7 +20,7 @@ class TrainingsInteractor {
   Stream<List<Training>> get stream => streamController.stream;
 
   Future<void> init() async {
-    trainings = await database.read();
+    trainings = await database.get();
     streamController.add(trainings!);
   }
 
@@ -38,7 +38,7 @@ class TrainingsInteractor {
 
   Future<void> create(DateTime date) async {
     final Training training = TrainigDraft(date: date);
-    await database.create(training);
+    await database.add(training);
   }
 
   Future<void> delete(int id) async {
@@ -55,8 +55,8 @@ class TrainingsInteractor {
 
 abstract interface class TrainingsDao {
   // Stream<List<Training>> watch();
-  Future<List<Training>> read();
+  Future<List<Training>> get();
+  Future<void> add(Training training);
+  Future<void> replace(Training training);
   Future<void> remove(Training training);
-  Future<void> edit(Training training);
-  Future<void> create(Training training);
 }

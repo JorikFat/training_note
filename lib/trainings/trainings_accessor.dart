@@ -5,11 +5,11 @@ import 'package:training_note/data/models/training_data.dart';
 import 'package:training_note/trainings/training.dart';
 import 'package:training_note/trainings/trainings_interactor.dart';
 
-part 'trainings_repository.g.dart';
+part 'trainings_accessor.g.dart';
 
 @DriftAccessor(tables: [TrainingData, ApproachData])
 class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
-    with _$TrainingsRepositoryMixin
+    with _$TrainingsAccessorMixin
     implements TrainingsDao {
   TrainingsAccessor(super.database);
 
@@ -27,20 +27,21 @@ class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future<List<Training>> read() async {
+  Future<List<Training>> get() async {
     final data = await managers.trainingData
         .withReferences((prefetch) => prefetch(approachDataRefs: true))
         .get();
     return mapTable(data);
   }
 
-  Stream<List<Training>> watch() {
-    return managers.trainingData
-        .withReferences((prefetch) => prefetch(approachDataRefs: true))
-        .watch()
-        .map(mapTable);
-  }
+  // Stream<List<Training>> watch() {
+  //   return managers.trainingData
+  //       .withReferences((prefetch) => prefetch(approachDataRefs: true))
+  //       .watch()
+  //       .map(mapTable);
+  // }
 
+  @override
   Future<void> add(Training training) async {
     await managers.trainingData
         .filter((it) => it.id.equals(training.id))
@@ -57,10 +58,7 @@ class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future<void> create(Training training) => add(training);
-
-  @override
-  Future<void> edit(Training training) async {
+  Future<void> replace(Training training) async {
     await managers.trainingData
         .filter((it) => it.id.equals(training.id))
         .update((o) => o(date: Value(training.date)));
