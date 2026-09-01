@@ -14,7 +14,7 @@ void main() async {
   await exercisesScreenViewModel.load();
   trainingsScreenViewModel = TrainingsScreenViewModel([], database: database);
   await trainingsScreenViewModel.load();
-  trainings = TrainingsInteractor(database: database);
+  trainings = CompatTrainingsInteractor(database: database);
   await trainings.init();
   runApp(TrainingNoteApp(
     database: database,

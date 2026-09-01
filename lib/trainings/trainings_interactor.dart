@@ -1,26 +1,41 @@
 import 'dart:async';
 
-import 'package:drift/drift.dart';
 import 'package:training_note/data/database.dart';
 import 'package:training_note/trainings/training.dart';
-import 'package:training_note/trainings/trainings_accessor.dart';
+import 'package:training_note/trainings/trainings_drift_dao.dart';
 
-late final TrainingsInteractor trainings;
+late final CompatTrainingsInteractor trainings;
 
+//специальный класс совместимости, чтобы в него вынести все сомнительные решения
+//а после их исправления вернуть родительский TrainingsInteractor
+class CompatTrainingsInteractor extends TrainingsInteractor {
+
+  CompatTrainingsInteractor({required super.database}) :super._();
+
+
+  @deprecated
+  Future<TrainingDataData> add() async {
+    return trainingsDao.createEmpty(DateTime.now());
+  }
+}
+
+//TODO: remake to Notifier
 class TrainingsInteractor {
-  final TrainingsAccessor database; //TODO: pass TrainingsDao
+  final CompatTrainingsDriftDao trainingsDao; //TODO: pass TrainingsDao
   List<Training>? trainings;
 
   final StreamController<List<Training>> streamController =
       StreamController.broadcast();
 
-  TrainingsInteractor({required AppDatabase database})
-      : database = TrainingsAccessor(database);
+  //конструктор намеренно сделал приватным, чтобы подсветились все места 
+  //где использовался до этого публичный и заменить его на Compat
+  TrainingsInteractor._({required AppDatabase database})
+      : trainingsDao = CompatTrainingsDriftDao(database);
 
   Stream<List<Training>> get stream => streamController.stream;
 
   Future<void> init() async {
-    trainings = await database.get();
+    trainings = await trainingsDao.get();
     streamController.add(trainings!);
   }
 
@@ -28,22 +43,14 @@ class TrainingsInteractor {
     streamController.close();
   }
 
-  @deprecated
-  Future<TrainingDataData> add() async {
-    final result = await database
-        .into(database.trainingData)
-        .insertReturning(TrainingDataCompanion(date: Value(DateTime.now())));
-    return result;
-  }
-
   Future<void> create(DateTime date) async {
     final Training training = TrainigDraft(date: date);
-    await database.add(training);
+    await trainingsDao.add(training);
   }
 
   Future<void> delete(int id) async {
     final Training training = trainings!.firstWhere((it) => it.id == id);
-    await database.remove(training);
+    await trainingsDao.remove(training);
     _update(trainings!.toList()..remove(training));
   }
 
@@ -57,6 +64,6 @@ abstract interface class TrainingsDao {
   // Stream<List<Training>> watch();
   Future<List<Training>> get();
   Future<void> add(Training training);
-  Future<void> replace(Training training);
+  Future<void> set(Training training);
   Future<void> remove(Training training);
 }

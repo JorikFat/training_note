@@ -3,11 +3,22 @@ import 'package:training_note/data/database.dart';
 import 'package:training_note/trainings/training.dart';
 import 'package:training_note/trainings/trainings_interactor.dart';
 
+class CompatTrainingsDriftDao extends TrainingsDriftDao {
+  CompatTrainingsDriftDao(super.database);
+
+  Future<TrainingDataData> createEmpty(DateTime date) async {
+    final result = await super
+        .trainings
+        .insertReturning(TrainingDataCompanion(date: Value(date)));
+    return result;
+  }
+}
+
 class TrainingsDriftDao implements TrainingsDao {
   final $TrainingDataTable trainings;
   final $ApproachDataTable approaches;
 
-  TrainingsDriftDao({required AppDatabase database})
+  TrainingsDriftDao(AppDatabase database)
       : trainings = database.trainingData,
         approaches = database.approachData;
 
@@ -37,7 +48,7 @@ class TrainingsDriftDao implements TrainingsDao {
   }
 
   @override
-  Future<void> replace(Training training) {
+  Future<void> set(Training training) {
     return trainings.update().replace(
           TrainingDataCompanion(
             id: Value(training.id),
@@ -50,10 +61,8 @@ class TrainingsDriftDao implements TrainingsDao {
   Future<void> remove(Training training) async {
     //TODO: use transaction
     // return database.transaction(() async {
-    await approaches
-        .deleteWhere((row) => row.trainingId.equals(training.id));
-    await trainings
-        .deleteWhere((row) => row.id.equals(training.id));
+    await approaches.deleteWhere((row) => row.trainingId.equals(training.id));
+    await trainings.deleteWhere((row) => row.id.equals(training.id));
     // });
   }
 }

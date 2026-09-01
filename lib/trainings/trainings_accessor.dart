@@ -58,7 +58,7 @@ class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future<void> replace(Training training) async {
+  Future<void> set(Training training) async {
     await managers.trainingData
         .filter((it) => it.id.equals(training.id))
         .update((o) => o(date: Value(training.date)));
