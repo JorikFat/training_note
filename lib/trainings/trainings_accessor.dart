@@ -5,11 +5,11 @@ import 'package:training_note/data/models/training_data.dart';
 import 'package:training_note/trainings/training.dart';
 import 'package:training_note/trainings/trainings_interactor.dart';
 
-part 'trainings_repository.g.dart';
+part 'trainings_accessor.g.dart';
 
 @DriftAccessor(tables: [TrainingData, ApproachData])
 class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
-    with _$TrainingsRepositoryMixin
+    with _$TrainingsAccessorMixin
     implements TrainingsDao {
   TrainingsAccessor(super.database);
 
@@ -28,21 +28,21 @@ class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<List<Training>> read() async {
-    final data = await managers.trainingData
+    final data = await attachedDatabase.managers.trainingData
         .withReferences((prefetch) => prefetch(approachDataRefs: true))
         .get();
     return mapTable(data);
   }
 
   Stream<List<Training>> watch() {
-    return managers.trainingData
+    return attachedDatabase.managers.trainingData
         .withReferences((prefetch) => prefetch(approachDataRefs: true))
         .watch()
         .map(mapTable);
   }
 
   Future<void> add(Training training) async {
-    await managers.trainingData
+    await attachedDatabase.managers.trainingData
         .filter((it) => it.id.equals(training.id))
         .update((update) => update(
               date: Value(training.date),
@@ -51,7 +51,7 @@ class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<void> remove(Training training) async {
-    await managers.trainingData
+    await attachedDatabase.managers.trainingData
         .filter((it) => it.id.equals(training.id))
         .delete();
   }
@@ -61,7 +61,7 @@ class TrainingsAccessor extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<void> edit(Training training) async {
-    await managers.trainingData
+    await attachedDatabase.managers.trainingData
         .filter((it) => it.id.equals(training.id))
         .update((o) => o(date: Value(training.date)));
   }

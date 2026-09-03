@@ -31,7 +31,7 @@ class TrainingsInteractor {
   @deprecated
   Future<TrainingDataData> add() async {
     final result = await database
-        .into(database.trainingData)
+        .into(database.attachedDatabase.trainingData)
         .insertReturning(TrainingDataCompanion(date: Value(DateTime.now())));
     return result;
   }

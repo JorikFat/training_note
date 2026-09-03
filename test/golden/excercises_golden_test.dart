@@ -9,7 +9,7 @@ import 'package:training_note/ui/training/view_model/trainings_screen_view_model
 
 void main() {
   final database = AppDatabase();
-  trainingsScreenViewModel = TrainingsScreenViewModel([]);
+  trainingsScreenViewModel = TrainingsScreenViewModel([], database: database);
   exercisesScreenViewModel = ExercisesScreenViewModel([], database: database)
     ..value = [
       Exercise(name: 'Отжимания', id: 1),
@@ -18,7 +18,9 @@ void main() {
     ];
 
   testWidgets('list', (tester) async {
-    await tester.pumpWidget(TrainingNoteApp());
+    await tester.pumpWidget(TrainingNoteApp(
+      database: database,
+    ));
 
     await tester.tap(find.text("Упражнения"));
     await tester.pumpAndSettle();
@@ -31,7 +33,9 @@ void main() {
   });
 
   testWidgets('add', (tester) async {
-    await tester.pumpWidget(TrainingNoteApp());
+    await tester.pumpWidget(TrainingNoteApp(
+      database: database,
+    ));
 
     await tester.tap(find.text('Упражнения'));
     await tester.pumpAndSettle();
@@ -47,7 +51,9 @@ void main() {
   });
 
   testWidgets('edit', (tester) async {
-    await tester.pumpWidget(TrainingNoteApp());
+    await tester.pumpWidget(TrainingNoteApp(
+      database: database,
+    ));
 
     await tester.tap(find.text('Упражнения'));
     await tester.pumpAndSettle();

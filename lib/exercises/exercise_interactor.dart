@@ -2,24 +2,24 @@ import 'dart:async';
 
 import 'package:training_note/data/database.dart';
 import 'package:training_note/exercises/exercise.dart';
-import 'package:training_note/exercises/exercise_accessor.dart';
+import 'package:training_note/exercises/exercises_accessor.dart';
 
-late final TrainingsInteractor trainings;
+late final ExerciseInteractor trainings;
 
-class TrainingsInteractor {
-  final ExerciseAccessor database;
+class ExerciseInteractor {
+  final ExercisesAccessor database;
   List<Exercise>? exercises;
 
   final StreamController<List<Exercise>> streamController =
       StreamController.broadcast();
 
-  TrainingsInteractor({required AppDatabase database})
-      : database = ExerciseAccessor(database);
+  ExerciseInteractor({required AppDatabase database})
+      : database = ExercisesAccessor(database);
 
   Stream<List<Exercise>> get stream => streamController.stream;
 
   Future<void> init() async {
-    exercises = await database.read();
+    exercises = await database.get();
     streamController.add(exercises!);
   }
 
@@ -30,14 +30,14 @@ class TrainingsInteractor {
   @deprecated
   Future<ExerciseDataData> add() async {
     final result = await database
-        .into(database.exerciseData)
+        .into(database.attachedDatabase.exerciseData)
         .insertReturning(ExerciseDataCompanion());
     return result;
   }
 
   Future<void> create(DateTime date) async {
     final Exercise exercise = ExerciseDraft();
-    await database.create(exercise);
+    await database.add(exercise);
   }
 
   Future<void> delete(int id) async {
